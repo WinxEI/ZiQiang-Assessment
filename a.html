@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .header {
+            position: fixed;
+            background: #fff;
+            height: 150px;
+            width: 100%;
+            top: 0px;
+            left: 0px;
+            overflow: hidden;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+        }
+        
+        .header .min {
+            width: calc(100% - 2px);
+            margin-left: 0px;
+        }
+        
+        .header .min .dh li {
+            display: block;
+            float: left;
+            margin: 68px 10px 0px 70px;
+            list-style: none;
+            line-height: 50px;
+            font-size: 22px;
+            height: 50px;
+            color: #5b6064;
+            background-color: #fff;
+        }
+        
+        .logo {
+            display: inline-block;
+            margin: 5px 63px 0px 93px;
+            transition: all 0.6s;
+            list-style: none;
+            height: 1px;
+            float: left;
+            color: #5b6064;
+            background-color: #fff;
+        }
+        
+        .header .min .dh li:hover {
+            color: #5b6064;
+            background-color: rgb(249, 249, 249);
+        }
+        
+        .later {
+            margin-top: 76px;
+        }
+        
+        #login {
+            margin-right: 60px;
+            float: right;
+            transition: all 0.2s;
+            text-align: center;
+            line-height: 38px;
+            font-size: 16px;
+            height: 38px;
+            width: 80px;
+            overflow: hidden;
+            color: #5b6064;
+            border-radius: 4px;
+            background-color: #1ff;
+        }
+        
+        #login:hover {
+            color: #5b6064;
+            background-color: rgb(249, 249, 249);
+        }
+        
+        .search {
+            height: 32px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #555;
+            vertical-align: middle;
+            background-color: #fff;
+            outline: none !important;
+            margin-right: 78px;
+            width: 78px;
+            border: 3px solid #eaeaea;
+            color: #c8c8c8;
+<<<<<<< HEAD
+=======
+            background: url() no-repeat 95px 12px;
+>>>>>>> 0a86a34bb1fe266b5aeb2d45ab7923cf103238f2
+            padding: 0 35px 0px 5px;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        .context {
+            padding: 0px 2px 0px 2px;
+            width: calc(80%);
+            max-width: 890px;
+            margin: 0 auto;
+            border: 3px solid #000;
+        }
+        
+        .title {
+            border-left: 3px solid #000;
+            padding-left: 20px;
+            font-size: 1.9em;
+        }
+        
+        .imgood {
+            width: 100%;
+            box-shadow: 5px 5px 5px pink;
+            transition: all 0.6s;
+        }
+        
+        .link {
+            margin: 0px 12px 0px 12px;
+            transition: all 0.6s;
+            float: left;
+            text-align: center;
+            color: #5b6064;
+            background: #fff;
+            margin-top: 10px;
+            border-radius: 4px;
+            width: 33%;
+            width: calc(33.333333333333% - 24px);
+            width: -moz-calc(33.333333333333% - 24px);
+            width: -webkit-calc(33.333333333333% - 24px);
+            display: inline-block;
+            opacity: 1;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .link a p {
+            margin: 20px auto;
+            height: 30px;
+            line-height: 30px;
+            width: 70%;
+            background: #F64848;
+            color: #fff;
+        }
+        
+        .link a img:hover {
+            z-index: 100;
+            color: #fff;
+            background: #F64848;
+            box-shadow: 0px 15px 30px #F64848;
+            opacity: 0.8;
+        }
+        
+        .link a p:hover {
+            z-index: 100;
+            color: #fff;
+            background: #F64848;
+            ,
+            box-shadow: 0px 15px 30px #F64848;
+            opacity: 0.8;
+        }
+        
+        .container {
+            width: 100%;
+            margin-left: 0px;
+            margin-top: 150px;
+        }
+        
+        @media screen and (max-width: 975px) {
+            .header .min .dh li {
+                margin: 15px 10px 0px 70px;
+            }
+            .later {
+                margin-top: 15px;
+            }
+            .context {
+                width: calc(100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="min">
+            <div class="dh">
+                <div class="logo">
+                    <img src="image/logo.gif" alt="">
+                </div>
+                <ul>
+                    <a href="/?type=view">
+                        <li>市集</li>
+                    </a>
+                    <a href="/?type=people">
+                        <li>活动</li>
+                    </a>
+                    <a href="/?type=upload">
+                        <li>小组</li>
+                    </a>
+                </ul>
+
+            </div>
+            <div class="later" style="float:right;">
+
+                <a href="">
+                    <div id="login" style="float:right;">登录</div>
+                </a>
+                <div style="float:right;">
+                    <form action="/" method="GET" target="_blank">
+                        <textarea style="display: none;" name="type">search</textarea>
+                        <input type="text" class="search" name="s" placeholder="......" value="" style="background: url(./image/search.jpg) no-repeat 90px 4px;">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <img src="image/show.png" alt="" style="display: block;width: 100%">
+        <div class="context">
+            <div class="title">
+                <p>市 集</p>
+            </div>
+            <div class="link">
+                <a href="">
+                    <img class="imgood" src="image/good1.png" alt="">
+                    <p>123</p>
+                </a>
+            </div>
+            <div class="link">
+                <a href="">
+                    <img class="imgood" src="image/good2.png" alt="">
+                    <p>456</p>
+                </a>
+            </div>
+            <div class="link">
+                <a href="">
+                    <img class="imgood" src="image/good3.png" alt="">
+                    <p>789</p>
+                </a>
+            </div>
+            <div style="clear:both;text-align:right;">
+                <a href="">查看更多>></a>
+            </div>
+            <div class="title">
+                <p>活 动</p>
+            </div>
+            <div style="padding-left:5%">
+                <div style="width:30%;float:left;display: inline-block;">
+                    <img src="image/MUJI.png" alt="" style="width:100%">
+                </div>
+                <div style="width:calc(70%);float:left;display: inline-block;">
+                    <h2>MUJI体验之路</h2>
+                    <p>7月10日-7月12日</p>
+                    <p>昙华林</p>
+                    <p><strong>102</strong>人参加</p>
+                </div>
+                <div style="clear:both;">
+                </div>
+            </div>
+            <div style="padding-right:5%">
+                <div style="width:30%;float:right;display: inline-block;">
+                    <img src="image/IDEE.png" alt="" style="width:100%">
+                </div>
+                <div style="width:calc(70%);float:right;display: inline-block;text-align:right;">
+                    <h2>IDEE学习与探索</h2>
+                    <p>8月10日-8月22日</p>
+                    <p>汉口循礼门1号国际大道43号</p>
+                    <p><strong>32</strong>人参加</p>
+                </div>
+                <div style="clear:both;">
+                </div>
+            </div>
+            <div style="clear:both;text-align:right;">
+                <a href="">查看更多>></a>
+            </div>
+            <div class="title">
+                <p>小 组</p>
+            </div>
+            <div style="padding-left:5%">
+                <div style="width:calc(50%);float:left;display: inline-block;">
+                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
+                    <div>
+                        <h1>植物百科</h1>
+                        <p><strong>201</strong>个成员</p>
+                    </div>
+                </div>
+                <div style="width:calc(50%);float:left;display: inline-block;">
+                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
+                    <div>
+                        <h1>植物百科</h1>
+                        <p><strong>201</strong>个成员</p>
+                    </div>
+                </div>
+                <div style="width:calc(50%);float:left;display: inline-block;">
+                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
+                    <div>
+                        <h1>植物百科</h1>
+                        <p><strong>201</strong>个成员</p>
+                    </div>
+                </div>
+                <div style="width:calc(50%);float:left;display: inline-block;">
+                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
+                    <div>
+                        <h1>植物百科</h1>
+                        <p><strong>201</strong>个成员</p>
+                    </div>
+                </div>
+                <div style="clear:both;">
+                </div>
+            </div>
+            <div style="clear:both;text-align:right;">
+                <a href="">查看更多>></a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright" style="width:100%;text-align:center;background-color:#010;">
+        <p style="margin:0;padding:0;">Copyright©iss.whu.edu.cn 2015-2016 all rights reserved 3LC 技术支持</p>
+        <p style="margin:0;padding:0;"><a href="">3LC</a> <a href="">关于我们</a> <a href="">联系我们 </a><a href="">CC项目</a></p>
+    </div>
+</body>
+
+</html>
