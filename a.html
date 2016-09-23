@@ -7,6 +7,7 @@
     <style>
         body {
             min-width: 700px;
+            font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
         }
         
         .header {
@@ -33,7 +34,7 @@
             margin: 68px 10px 0px 70px;
             list-style: none;
             line-height: 50px;
-            font-size: 22px;
+            font-size: 24px;
             height: 50px;
             color: #5b6064;
             background-color: #fff;
@@ -68,10 +69,10 @@
             font-size: 16px;
             height: 38px;
             width: 80px;
+            color: #fff;
             overflow: hidden;
-            color: #5b6064;
             border-radius: 4px;
-            background-color: #1ff;
+            background-color: #4a8954;
         }
         
         #login:hover {
@@ -82,14 +83,13 @@
         .search {
             height: 32px;
             font-size: 14px;
-            line-height: 1.428571429;
-            color: #555;
+            line-height: 1.4;
             vertical-align: middle;
             background-color: #fff;
             outline: none !important;
             margin-right: 78px;
-            width: 78px;
-            border: 3px solid #eaeaea;
+            width: 169px;
+            border: 3px solid #0d4916;
             color: #c8c8c8;
             padding: 0 35px 0px 5px;
         }
@@ -102,14 +102,24 @@
             padding: 0px 2px 0px 2px;
             width: calc(80%);
             max-width: 890px;
-            margin: 0 auto;
-            border: 3px solid #000;
+            margin: 56px auto;
+            background: #ebf8d6;
+        }
+        
+        .box {
+            background: #fff;
+            margin-top: 22px;
+            padding-left: 6px;
+            padding-right: 7px;
         }
         
         .title {
-            border-left: 3px solid #000;
-            padding-left: 20px;
-            font-size: 1.9em;
+            border-left: 6px solid #4a8954;
+            padding-left: 32px;
+            font-size: 24px;
+            height: 37px;
+            color: #4a8954;
+            line-height: 37px;
         }
         
         .imgood {
@@ -119,18 +129,17 @@
         }
         
         .link {
-            margin: 0px 12px 0px 12px;
+            margin: 15px 13px 0px 12px;
             transition: all 0.6s;
             float: left;
             text-align: center;
             color: #5b6064;
             background: #fff;
-            margin-top: 10px;
             border-radius: 4px;
             width: 33%;
-            width: calc(33.333333333333% - 24px);
-            width: -moz-calc(33.333333333333% - 24px);
-            width: -webkit-calc(33.333333333333% - 24px);
+            width: calc(33.333333333333% - 25px);
+            width: -moz-calc(33.333333333333% - 25px);
+            width: -webkit-calc(33.333333333333% - 25px);
             display: inline-block;
             opacity: 1;
         }
@@ -140,11 +149,12 @@
         }
         
         .link a p {
-            margin: 20px auto;
-            height: 30px;
+            font-size: 18px;
+            margin: 16px auto 21px auto;
+            height: 34px;
             line-height: 30px;
             width: 70%;
-            background: #F64848;
+            background: #4a8954;
             color: #fff;
         }
         
@@ -165,10 +175,18 @@
             opacity: 0.8;
         }
         
+        .viewmore {
+            margin-top: 38px;
+            font-size: 18px;
+            color: #4a8954;
+            text-align: right;
+        }
+        
         .container {
             width: 100%;
             margin-left: 0px;
             margin-top: 150px;
+            background: #ebf8d6;
         }
         
         @media screen and (max-width: 975px) {
@@ -221,30 +239,35 @@
         </div>
     </div>
     <div class="container">
+
         <img src="image/show.png" alt="" style="display: block;width: 100%">
         <div class="context">
             <div class="title">
                 <p>市 集</p>
             </div>
-            <div class="link">
-                <a href="">
-                    <img class="imgood" src="image/good1.png" alt="">
-                    <p>123</p>
-                </a>
+            <div class="box" id="fair">
+                <div class="link">
+                    <a href="">
+                        <img class="imgood" src="image/good1.png" alt="">
+                        <p>加入购物车</p>
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="">
+                        <img class="imgood" src="image/good2.png" alt="">
+                        <p>加入购物车</p>
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="">
+                        <img class="imgood" src="image/good3.png" alt="">
+                        <p>加入购物车</p>
+                    </a>
+                </div>
+                <div style="clear:both;text-align:right;">
+                </div>
             </div>
-            <div class="link">
-                <a href="">
-                    <img class="imgood" src="image/good2.png" alt="">
-                    <p>456</p>
-                </a>
-            </div>
-            <div class="link">
-                <a href="">
-                    <img class="imgood" src="image/good3.png" alt="">
-                    <p>789</p>
-                </a>
-            </div>
-            <div style="clear:both;text-align:right;">
+            <div class="viewmore">
                 <a href="">查看更多>></a>
             </div>
             <div class="title">
@@ -276,7 +299,7 @@
                 <div style="clear:both;">
                 </div>
             </div>
-            <div style="clear:both;text-align:right;">
+            <div class="viewmore" style="clear:both;text-align:right;">
                 <a href="">查看更多>></a>
             </div>
             <div class="title">
