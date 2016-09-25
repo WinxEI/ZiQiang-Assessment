@@ -6,13 +6,11 @@
     <title>Document</title>
     <style>
         body {
-            min-width: 700px;
+            min-width: 896px;
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
         }
         
         .header {
-            min-width: 700px;
-            position: fixed;
             background: #fff;
             height: 150px;
             width: 100%;
@@ -52,8 +50,7 @@
         }
         
         .header .min .dh li:hover {
-            color: #5b6064;
-            background-color: rgb(249, 249, 249);
+            color: #4a8954;
         }
         
         .later {
@@ -76,14 +73,13 @@
         }
         
         #login:hover {
-            color: #5b6064;
-            background-color: rgb(249, 249, 249);
+            opacity: 0.8;
         }
         
         .search {
             height: 32px;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 32px;
             vertical-align: middle;
             background-color: #fff;
             outline: none !important;
@@ -98,19 +94,19 @@
             display: block;
         }
         
-        .context {
-            padding: 0px 2px 0px 2px;
-            width: calc(80%);
-            max-width: 890px;
-            margin: 56px auto;
-            background: #ebf8d6;
+        .container {
+            width: 100%;
+
+            margin: 0;
+            padding: 0;
+            background-color: #ebf8d6;
         }
         
-        .box {
-            background: #fff;
-            margin-top: 22px;
-            padding-left: 6px;
-            padding-right: 7px;
+        .context {
+            padding: 0px 2px 100px 2px;
+            margin: 56px auto 0px auto;
+            max-width: 896px;
+            background: #ebf8d6;
         }
         
         .title {
@@ -122,13 +118,48 @@
             line-height: 37px;
         }
         
+        .fair_box {
+            background: #fff;
+            margin-top: 22px;
+            padding-left: 6px;
+            padding-right: 7px;
+        }
+        
+        .circle {
+            text-align: center;
+            margin: 25px;
+            background-color: #4a8954;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            line-height: 50px;
+            position: absolute;
+            color: #fff;
+            font-size: 16px;
+            z-index: 100;
+        }
+        
+        .price {
+            position: absolute;
+            color: #4a8954;
+            background-color: transparent;
+            z-index: 100;
+            margin: 290px 0px 0px 180px;
+            font-size: 30px;
+            line-height: 30px;
+        }
+        
+        .price a {
+            font-size: 18px;
+        }
+        
         .imgood {
             width: 100%;
             box-shadow: 5px 5px 5px pink;
             transition: all 0.6s;
         }
         
-        .link {
+        .fair_link {
             margin: 15px 13px 0px 12px;
             transition: all 0.6s;
             float: left;
@@ -146,58 +177,124 @@
         
         a {
             text-decoration: none;
+            color: #4a8954;
         }
         
-        .link a p {
+        .fair_link a p {
             font-size: 18px;
+            transition: all 0.6s;
             margin: 16px auto 21px auto;
             height: 34px;
             line-height: 30px;
-            width: 70%;
+            width: 57%;
             background: #4a8954;
             color: #fff;
         }
         
-        .link a img:hover {
+        .fair_link a img:hover {
             z-index: 100;
             color: #fff;
             background: #F64848;
-            box-shadow: 0px 15px 30px #F64848;
+            box-shadow: 0px 15px 30px #4a8954;
             opacity: 0.8;
         }
         
-        .link a p:hover {
+        .fair_link a p:hover {
+            context: '';
             z-index: 100;
             color: #fff;
-            background: #F64848;
-            ,
-            box-shadow: 0px 15px 30px #F64848;
+            box-shadow: 0px 15px 30px #4a8954;
             opacity: 0.8;
+            -moz-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
         }
         
         .viewmore {
+            clear: both;
             margin-top: 38px;
             font-size: 18px;
             color: #4a8954;
             text-align: right;
         }
         
-        .container {
-            width: 100%;
-            margin-left: 0px;
-            margin-top: 150px;
-            background: #ebf8d6;
+        .act_box {
+            margin-top: 25px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            background-color: #fff;
         }
         
-        @media screen and (max-width: 975px) {
+        .act_img {
+            width: 36.6%;
+            display: inline-block;
+            margin-right: 6.7%;
+            margin-left: 6.7%;
+        }
+        
+        .act_text {
+            display: inline-block;
+        }
+        
+        .act_text p {
+            margin: 0;
+            padding: 0;
+            color: #4b4b4b;
+        }
+        
+        .grp_box {
+            background-color: #fff;
+            width: calc(50% - 94px);
+            width: -moz-calc(50% - 94x);
+            width: -webkit-calc(50% - 94px);
+            margin: 30px 60px 0px 0px;
+            padding: 20px 17px;
+            float: left;
+            display: inline-block;
+        }
+        
+        .grp_box img {
+            float: left;
+            height: 100%;
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .grp_box p {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            color: #4b4b4b;
+            margin-top: 14px;
+        }
+        
+        .grp_box #h {
+            color: #4a8954;
+            font-size: 30px;
+            margin-top: 16px;
+        }
+        
+        .copyright {
+            font-size: 12px;
+            color: #eaebec;
+            padding: 20px 0px;
+            width: 100%;
+            text-align: center;
+            background-color: #303136;
+        }
+        
+        .copyright a {
+            color: #eaebec;
+        }
+        
+        @media screen and (max-width: 1080px) {
             .header .min .dh li {
                 margin: 15px 10px 0px 70px;
             }
             .later {
                 margin-top: 15px;
-            }
-            .context {
-                width: calc(100%);
             }
         }
     </style>
@@ -211,13 +308,13 @@
                     <img src="image/logo.gif" alt="">
                 </div>
                 <ul>
-                    <a href="/?type=view">
+                    <a href="#fair">
                         <li>市集</li>
                     </a>
-                    <a href="/?type=people">
+                    <a href="#act">
                         <li>活动</li>
                     </a>
-                    <a href="/?type=upload">
+                    <a href="#grp">
                         <li>小组</li>
                     </a>
                 </ul>
@@ -231,34 +328,38 @@
                 <div style="float:right;">
                     <form action="/" method="GET" target="_blank">
                         <textarea style="display: none;" name="type">search</textarea>
-                        <input type="text" class="search" name="s" placeholder="......" value="" style="background: url(./image/search.jpg) no-repeat 90px 4px;">
-
+                        <input type="text" class="search" name="s" placeholder="" value="" style="background: url(./image/search.gif) no-repeat 180px 4px;">
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
-
         <img src="image/show.png" alt="" style="display: block;width: 100%">
         <div class="context">
-            <div class="title">
+            <div class="title" id="fair">
                 <p>市 集</p>
             </div>
-            <div class="box" id="fair">
-                <div class="link">
+            <div class="fair_box">
+                <div class="fair_link">
+                    <div class="circle">NEW</div>
+                    <div class="price"><a>￥</a>28</div>
                     <a href="">
+
                         <img class="imgood" src="image/good1.png" alt="">
                         <p>加入购物车</p>
                     </a>
                 </div>
-                <div class="link">
+                <div class="fair_link">
+                    <div class="circle">HOT</div>
+                    <div class="price"><a>￥</a>28</div>
                     <a href="">
                         <img class="imgood" src="image/good2.png" alt="">
                         <p>加入购物车</p>
                     </a>
                 </div>
-                <div class="link">
+                <div class="fair_link">
+                    <div class="price"><a>￥</a>28</div>
                     <a href="">
                         <img class="imgood" src="image/good3.png" alt="">
                         <p>加入购物车</p>
@@ -270,79 +371,78 @@
             <div class="viewmore">
                 <a href="">查看更多>></a>
             </div>
-            <div class="title">
+            <div class="title" id="act" style="margin-top:90px;">
                 <p>活 动</p>
             </div>
-            <div style="padding-left:5%">
-                <div style="width:30%;float:left;display: inline-block;">
-                    <img src="image/MUJI.png" alt="" style="width:100%">
+            <div class="act_box">
+                <div class="circle" style="margin:0px 0px 0px 800px">HOT</div>
+                <div class="act_img" style="float:left;">
+                    <img src="image/MUJI.png" alt="" style="width:100%;">
                 </div>
-                <div style="width:calc(70%);float:left;display: inline-block;">
-                    <h2>MUJI体验之路</h2>
-                    <p>7月10日-7月12日</p>
-                    <p>昙华林</p>
-                    <p><strong>102</strong>人参加</p>
+                <div class="act_text" style="float:left;">
+                    <p style="font-size:30px;color:#4a8954;margin-top:18px;">MUJI 体验之路</p>
+                    <p style="font-size:18px;margin-top:15px;">7月10日-7月12日</p>
+                    <p style="font-size:18px;margin-top:15px;">昙华林</p>
+                    <p style="font-size:24px;margin-top:20px;"><a style="color:#d4bf3e">102</a> 人参加</p>
                 </div>
                 <div style="clear:both;">
                 </div>
             </div>
-            <div style="padding-right:5%">
-                <div style="width:30%;float:right;display: inline-block;">
+            <div class="act_box">
+                <div class="act_img" style="float:right;">
                     <img src="image/IDEE.png" alt="" style="width:100%">
                 </div>
-                <div style="width:calc(70%);float:right;display: inline-block;text-align:right;">
-                    <h2>IDEE学习与探索</h2>
-                    <p>8月10日-8月22日</p>
-                    <p>汉口循礼门1号国际大道43号</p>
-                    <p><strong>32</strong>人参加</p>
+                <div class="act_text" style="float:right;text-align:right;">
+                    <p style="font-size:30px;color:#4a8954;margin-top:18px;">IDEE学习与探索</p>
+                    <p style="font-size:18px;margin-top:15px;">8月10日-8月22日</p>
+                    <p style="font-size:18px;margin-top:15px;">汉口循礼门1号国际大道43号</p>
+                    <p style="font-size:24px;margin-top:20px;"><a style="color:#d4bf3e">32</a> 人参加</p>
                 </div>
                 <div style="clear:both;">
                 </div>
             </div>
-            <div class="viewmore" style="clear:both;text-align:right;">
+            <div class="viewmore">
                 <a href="">查看更多>></a>
             </div>
-            <div class="title">
+            <div class="title" id="grp" style="margin-top:62px;margin-bottom:5px;">
                 <p>小 组</p>
             </div>
-            <div style="padding-left:5%">
-                <div style="width:calc(50%);float:left;display: inline-block;">
-                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
-                    <div>
-                        <h1>植物百科</h1>
-                        <p><strong>201</strong>个成员</p>
-                    </div>
-                </div>
-                <div style="width:calc(50%);float:left;display: inline-block;">
-                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
-                    <div>
-                        <h1>植物百科</h1>
-                        <p><strong>201</strong>个成员</p>
-                    </div>
-                </div>
-                <div style="width:calc(50%);float:left;display: inline-block;">
-                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
-                    <div>
-                        <h1>植物百科</h1>
-                        <p><strong>201</strong>个成员</p>
-                    </div>
-                </div>
-                <div style="width:calc(50%);float:left;display: inline-block;">
-                    <img src="image/flower.png" alt="" style="width:30%;float:left;display: inline-block;">
-                    <div>
-                        <h1>植物百科</h1>
-                        <p><strong>201</strong>个成员</p>
-                    </div>
-                </div>
-                <div style="clear:both;">
+            <div class="grp_box">
+                <img src="image/flower.png" alt="">
+                <div>
+                    <p id="h">植物百科</p>
+                    <p><a>201</a> 个成员</p>
                 </div>
             </div>
-            <div style="clear:both;text-align:right;">
+            <div class="grp_box">
+                <img src="image/flower.png" alt="">
+                <div>
+                    <p id="h">植物百科</p>
+                    <p><a>201</a> 个成员</p>
+                </div>
+            </div>
+            <div class="grp_box">
+                <img src="image/flower.png" alt="">
+                <div>
+                    <p id="h">植物百科</p>
+                    <p><a>201</a> 个成员</p>
+                </div>
+            </div>
+            <div class="grp_box">
+                <img src="image/flower.png" alt="">
+                <div>
+                    <p id="h">植物百科</p>
+                    <p><a>201</a> 个成员</p>
+                </div>
+            </div>
+            <div style="clear:both;">
+            </div>
+            <div class="viewmore">
                 <a href="">查看更多>></a>
             </div>
         </div>
     </div>
-    <div class="copyright" style="width:100%;text-align:center;background-color:#010;">
+    <div class="copyright">
         <p style="margin:0;padding:0;">Copyright©iss.whu.edu.cn 2015-2016 all rights reserved 3LC 技术支持</p>
         <p style="margin:0;padding:0;"><a href="">3LC</a> <a href="">关于我们</a> <a href="">联系我们 </a><a href="">CC项目</a></p>
     </div>
