@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     <style>
         body {
-            min-width: 896px;
             margin: 0px;
             padding: 0px;
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
@@ -44,7 +44,7 @@
         .logo {
             margin: 5px 63px 0px 93px;
             list-style: none;
-            height: 1px;
+            /*! height: 1px; */
             float: left;
             color: #5b6064;
             background-color: #fff;
@@ -55,23 +55,26 @@
         }
         
         .later {
+            margin-right: 60px;
             margin-top: 76px;
+            width: 374px;
             float: right;
-            width: 434px;
+            height: 38px;
+            overflow: hidden;
         }
         
-        .later div {
-            float: right;
+        .later input {
+            float: left;
         }
         
         #login {
-            margin-right: 60px;
-            float: right;
+            float: left;
             transition: all 0.2s;
             text-align: center;
             line-height: 38px;
             font-size: 16px;
             height: 38px;
+            margin-left: 78px;
             width: 80px;
             color: #fff;
             overflow: hidden;
@@ -91,7 +94,6 @@
             background-color: #fff;
             outline: none;
             float: left;
-            margin-right: 78px;
             width: 169px;
             background: url(image/search.gif) no-repeat 180px 4px;
             border: 3px solid #0d4916;
@@ -240,11 +242,17 @@
         }
         
         #act_box1 .circle {
-            margin: 0px 0px 0px 800px;
+            position: static;
+            float: right;
+            margin-top: 0px;
+            margin-right: 5.1%;
         }
         
         #act_box2 .circle {
-            margin: 0px 0px 0px 45px;
+            position: static;
+            float: left;
+            margin-top: 0px;
+            margin-left: 5.1%;
         }
         
         #act_box1 .act_img {
@@ -261,14 +269,15 @@
         }
         
         .act_img {
-            width: 36.6%;
-            display: inline-block;
-            margin-right: 6.7%;
-            margin-left: 6.7%;
+            width: 328px;
+            height: 205px;
+            float: left;
+            margin-right: 60px;
+            margin-left: 60px;
         }
         
         .act_text {
-            display: inline-block;
+            float: left;
         }
         
         .act_text .item1 {
@@ -360,12 +369,102 @@
             clear: both;
         }
         
-        @media screen and (max-width: 1080px) {
+        @media screen and (max-width: 1200px) {
             .header .min .dh li {
                 margin: 15px 10px 0px 70px;
             }
             .later {
+                width: 50%;
                 margin-top: 15px;
+            }
+            .fair_link a p {
+                width: 220px;
+            }
+            .act_img {
+                width: 328px;
+            }
+        }
+        
+        @media screen and (max-width: 895px) {
+            .later {
+                width: 374px;
+            }
+            .logo {
+                margin-left: 20px;
+                margin-right: 5%;
+            }
+            .later input {
+                margin: 0;
+            }
+            .fair_box {
+                padding: 0;
+            }
+            .fair_link {
+                margin: 0;
+                margin-top: 15px;
+                padding: 0;
+                width: 100%
+            }
+            .imgood {
+                margin: 0 auto;
+            }
+            .fair_link a p {
+                width: 220px;
+            }
+            .act_img {
+                margin: 0;
+                width: 100%;
+            }
+            .header .min .dh li {
+                margin: 15px 5% 0px 5%;
+            }
+            .act_img img {
+                width: 90%;
+                height: 205px;
+                margin: 0 auto;
+            }
+            #act_box1 .circle {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+            #act_box2 .circle {
+                margin-top: 10px;
+                margin-right: 0;
+            }
+            #act_box1 .act_text {
+                margin-left: 5%;
+            }
+            #act_box2 .act_text {
+                margin-right: 5%;
+            }
+            .grp_box {
+                margin-top: 10px;
+                margin-right: 0px;
+                padding: 0;
+                width: 100%;
+            }
+            .grp_box div {
+                margin: 35px 0;
+            }
+            .grp_box img {
+                margin: 20px 10%;
+            }
+        }
+        
+        @media screen and (max-width: 600px) {
+            .later {
+                width: 56%;
+                margin-right: 0px;
+            }
+            .copyright span {
+                display: block;
+            }
+            .search {
+                width: 130px;
+                background: url(image/search.gif) no-repeat 142px 4px;
+            }
+            .header .min .dh li {
+                margin: 15px 2% 0px 2%;
             }
         }
     </style>
@@ -376,21 +475,32 @@
         var index = [1, 1, 1];
         var sdelay;
         var element_top;
-
-        document.getElementById("view1").onclick = function() {
-            ViewFunc1(fair_json.data)
+        var result = {
+            fair: {
+                data: new Array()
+            },
+            act: {
+                data: new Array()
+            },
+            grp: {
+                data: new Array()
+            }
         };
 
-        document.getElementsByClassName("viewmore")[1].onclick = function() {
-            ViewFunc1(fair_json.data)
-        };
-        document.getElementsByClassName("viewmore")[2].onclick = function() {
-            ViewFunc1(fair_json.data)
-        };
+
 
         function loadXMLDoc() {
             var json_address = ["http://121.42.39.103:8080/api/products", "http://121.42.39.103:8080/api/activities", "http://121.42.39.103:8080/api/groups"];
             var json_name = ["fair_json", "act_json", "grp_json"];
+            document.getElementsByClassName("viewmore")[0].onclick = function() {
+                ViewFunc1(fair_json)
+            };
+            document.getElementsByClassName("viewmore")[1].onclick = function() {
+                ViewFunc2(act_json)
+            };
+            document.getElementsByClassName("viewmore")[2].onclick = function() {
+                ViewFunc3(grp_json)
+            };
             for (var i = 0; i < 3; i++) {
                 getData(json_address[i], json_name[i]);
             }
@@ -490,7 +600,7 @@
             } else {
                 window.scrollBy(0, 15);
                 //防止到达底部进入循环
-                if (getScrollTop() < element_top - 10 && getScrollTop() + getWindowHeight() < getScrollHeight()) {
+                if (getScrollTop() < element_top - 10 && getScrollTop() + getWindowHeight() < getScrollHeight() - 5) {
                     sdelay = setTimeout('pageScroll(false)', 1);
                 }
             }
@@ -503,39 +613,90 @@
         }
 
         function search(str) {
-            result = new Object();
-            result.fair = new Array();
-            result.act = new Array();
-            result.grp = new Array();
+            if (fair_json == null) {
+                alert("请等待加载！！！");
+                return;
+            }
+            //清空数组
+            result.fair.data.length = 0;
+            result.act.data.length = 0;
+            result.grp.data.length = 0;
             var count = 0;
             var patt = new RegExp(str, "i");
             for (var i = 0; i < fair_json.data.length; i++) {
                 if (fair_json.data[i].name.match(patt) != null) {
-                    result.fair[count++] = fair_json.data[i];
+                    result.fair.data[count++] = fair_json.data[i];
                 };
             }
             count = 0;
             for (var i = 0; i < act_json.data.length; i++) {
-                if (act_json.data[i].name.match(patt) != null) {
-                    result.act[count++] = act_json.data[i];
+                if (act_json.data[i].name.match(patt) != null || act_json.data[i].location.match(patt) != null) {
+                    result.act.data[count++] = act_json.data[i];
                 };
             }
             count = 0;
             for (var i = 0; i < grp_json.data.length; i++) {
-                if (fair_json.data[i].name.match(patt) != null) {
-                    result.grp[count++] = grp_json.data[i];
+                if (grp_json.data[i].name.match(patt) != null) {
+                    result.grp.data[count++] = grp_json.data[i];
                 };
             }
-            ViewFunc1(result.fair);
-            ViewFunc2(result.act);
-            ViewFunc3(result.grp);
+            index = [0, 0, 0];
+            if (result.fair.data.length > 0) {
+                document.getElementsByClassName("viewmore")[0].onclick = function() {
+                    ViewFunc1(result.fair)
+                };
+                ViewFunc1(result.fair);
+            } else {
+                document.getElementsByClassName("viewmore")[0].onclick = function() {
+                    ViewFunc1(fair_json)
+                };
+                ViewFunc1(fair_json);
+            }
+            if (result.act.data.length > 0) {
+                document.getElementsByClassName("viewmore")[1].onclick = function() {
+                    ViewFunc2(result.act)
+                };
+                ViewFunc2(result.act);
+            } else {
+                document.getElementsByClassName("viewmore")[1].onclick = function() {
+                    ViewFunc2(act_json)
+                };
+                ViewFunc2(act_json);
+            }
+            if (result.grp.data.length > 0) {
+                document.getElementsByClassName("viewmore")[2].onclick = function() {
+                    ViewFunc3(result.grp)
+                };
+                ViewFunc3(result.grp);
+            } else {
+                document.getElementsByClassName("viewmore")[2].onclick = function() {
+                    ViewFunc3(grp_json)
+                };
+                ViewFunc3(grp_json);
+            }
+            if (result.fair.data.length > 0) {
+                moveto("fair");
+            } else if (result.act.data.length > 0) {
+                moveto("act");
+            } else if (result.grp.data.length > 0) {
+                moveto("grp");
+            } else {
+                alert("w(ﾟДﾟ)w");
+            }
         }
 
-        function ViewFunc1(data) {
+        function ViewFunc1(element) {
+            if (fair_json == null) {
+                alert("请等待加载！！！");
+                return;
+            }
+            var data = element.data;
             var fair_img = [document.getElementById("fair_img1"), document.getElementById("fair_img2"), document.getElementById("fair_img3")];
             var img_div;
-            if (index[0] < data.length) {
-                for (var i = 0; i < 3; i++) {
+            for (var i = 0; i < 3; i++) {
+                if (index[0] < data.length) {
+                    document.getElementsByClassName("viewmore")[0].style.visibility = "visible";
+                    document.getElementsByClassName("fair_link")[i].style.visibility = "visible";
                     img_div = fair_img[i].getElementsByTagName("div");
                     if (data[index[0]].is_hot) {
                         img_div[0].style.visibility = "visible";
@@ -548,11 +709,12 @@
                     }
                     img_div[1].innerHTML = "<span>￥</span>" + parseInt(data[index[0]].price);
                     fair_img[i].style.background = "url(" + "http://121.42.39.103:8080" + data[index[0]].picture + ") no-repeat #fafafa " + bkgimPos(data[index[0]++].name);
-                    if (index[0] >= fair_json.data.length) {
-                        documen0t.getElementsByClassName("viewmore")[0].style.visibility = "hidden";
-                        break;
-                    }
+                } else {
+                    document.getElementsByClassName("fair_link")[i].style.visibility = "hidden";
                 }
+            }
+            if (index[0] >= data.length) {
+                document.getElementsByClassName("viewmore")[0].style.visibility = "hidden";
             }
         }
 
@@ -565,43 +727,60 @@
             return str;
         }
 
-        function ViewFunc2(data) {
+        function ViewFunc2(element) {
+            if (act_json == null) {
+                alert("请等待加载！！！");
+                return;
+            }
+            var data = element.data;
             var act_box = document.getElementsByClassName("act_box");
             var img_div;
-            if (index[1] < data.length) {
-                for (var i = 0; i < 2; i++) {
-                    img_div = act_box[i].getElementsByTagName("div");
+            for (var i = 0; i < 2; i++) {
+                if (index[1] < data.length) {
+                    document.getElementsByClassName("viewmore")[1].style.visibility = "visible";
+                    act_box[i].style.visibility = "visible";
+                    cir_div = act_box[i].getElementsByClassName("circle");
                     if (data[index[1]].is_hot) {
-                        img_div[0].style.visibility = "visible";
+                        cir_div[0].style.visibility = "visible";
                     } else {
-                        img_div[0].style.visibility = "hidden";
+                        cir_div[0].style.visibility = "hidden";
                     }
                     act_box[i].getElementsByTagName("img")[0].src = "http://121.42.39.103:8080" + data[index[1]].picture;
                     act_box[i].getElementsByTagName("p")[0].innerHTML = data[index[1]].name;
                     act_box[i].getElementsByTagName("p")[1].innerHTML = clrZero(data[index[1]].start_date) + "-" + clrZero(data[index[1]].end_date);
                     act_box[i].getElementsByTagName("p")[2].innerHTML = data[index[1]].location;
                     act_box[i].getElementsByTagName("p")[3].innerHTML = "<span>" + data[index[1]++].participants + "</span>" + " 人参加";
-                    if (index[1] >= data.length) {
-                        document.getElementsByClassName("viewmore")[2].style.visibility = "hidden";
-                        break;
-                    }
+                } else {
+                    act_box[i].style.visibility = "hidden";
                 }
             }
+            if (index[1] >= data.length) {
+                document.getElementsByClassName("viewmore")[1].style.visibility = "hidden";
+            }
+
         }
 
-        function ViewFunc3(data) {
+        function ViewFunc3(element) {
+            if (grp_json == null) {
+                alert("请等待加载！！！");
+                return;
+            }
+            var data = element.data;
             var grp_box = document.getElementsByClassName("grp_box");
-            if (index[2] < data.length) {
-                for (var i = 0; i < 4; i++) {
+            for (var i = 0; i < 4; i++) {
+                if (index[2] < data.length) {
+                    document.getElementsByClassName("viewmore")[2].style.visibility = "visible";
+                    grp_box[i].style.visibility = "visible";
                     grp_box[i].getElementsByTagName("img")[0].src = "http://121.42.39.103:8080" + data[index[2]].picture;
                     grp_box[i].getElementsByTagName("p")[0].innerHTML = data[index[2]].name;
                     grp_box[i].getElementsByTagName("p")[1].innerHTML = "<span>" + data[index[2]++].members + "</span> 个成员";
-                    if (index[2] >= data.length) {
-                        document.getElementsByClassName("viewmore")[2].style.visibility = "hidden";
-                        break;
-                    }
+                } else {
+                    grp_box[i].style.visibility = "hidden";
                 }
-            };
+            }
+            if (index[2] >= data.length) {
+                document.getElementsByClassName("viewmore")[2].style.visibility = "hidden";
+            }
         }
     </script>
 </head>
@@ -627,11 +806,12 @@
 
             </div>
             <div class="later">
-                <a href="">
-                    <div id="login">登录</div>
+                <div style="float:right">
+                    <input type="text" class="search" name="s" placeholder="" value="" onkeydown="if(event.keyCode==13){search(this.value);}">
+                    <a href="###">
+                        <div id="login">登录</div>
+                </div>
                 </a>
-                <input type="text" class="search" name="s" placeholder="" value="" onkeydown="if(event.keyCode==13){search(this.value);}">
-
             </div>
         </div>
     </div>
@@ -644,7 +824,7 @@
 
             <div class="fair_box">
                 <div class="fair_link">
-                    <a href="">
+                    <a href="###">
                         <div class="imgood" id="fair_img1">
                             <div class="circle">NEW</div>
                             <div class="price"><span>￥</span>28</div>
@@ -653,7 +833,7 @@
                     </a>
                 </div>
                 <div class="fair_link">
-                    <a href="">
+                    <a href="###">
                         <div class="imgood" id="fair_img2">
                             <div class="circle">NEW</div>
                             <div class="price"><span>￥</span>28</div>
@@ -662,7 +842,7 @@
                     </a>
                 </div>
                 <div class="fair_link">
-                    <a href="">
+                    <a href="###">
                         <div class="imgood" id="fair_img3">
                             <div class="circle">NEW</div>
                             <div class="price"><span>￥</span>28</div>
@@ -674,13 +854,13 @@
                 </div>
             </div>
             <div class="viewmore">
-                <a href="###" id="view1">查看更多>></a>
+                <a href="###">查看更多>></a>
             </div>
             <div class="title" id="act">
                 <p>活 动</p>
             </div>
             <div class="act_box" id="act_box1">
-                <div class="circle">HOT</div>
+
                 <div class="act_img">
                     <img src="image/MUJI.png">
                 </div>
@@ -690,14 +870,16 @@
                     <p class="item3">昙华林</p>
                     <p class="item4"><span>102</span> 人参加</p>
                 </div>
+                <div class="circle">HOT</div>
                 <div class="clear">
                 </div>
             </div>
             <div class="act_box" id="act_box2">
-                <div class="circle">HOT</div>
+
                 <div class="act_img">
                     <img src="image/IDEE.png" alt="">
                 </div>
+                <div class="circle">HOT</div>
                 <div class="act_text">
                     <p class="item1">IDEE学习与探索</p>
                     <p class="item2">8月10日-8月22日</p>
@@ -749,8 +931,8 @@
         </div>
     </div>
     <div class="copyright">
-        <p>Copyright©iss.whu.edu.cn 2015-2016 all rights reserved 3LC 技术支持</p>
-        <p><a href="###">3LC </a><a href="###" onclick="">关于我们 </a><a href="">联系我们 </a><a href="">CC项目</a></p>
+        <p>Copyright©iss.whu.edu.cn <span>2015-2016 all rights reserved 3LC 技术支持</span></p>
+        <p><a href="###">3LC </a><a href="###">关于我们 </a><a href="###">联系我们 </a><a href="###">CC项目</a></p>
     </div>
 </body>
 
