@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     <style>
+            .nav li {
+            margin: 68px 10px 0px 70px;
+            padding: 0;
+            list-style: none;
+            display: block;
+            line-height: 50px;
+            font-size: 24px;
+            height: 50px;
+            float: left;
+        }
+        
         body {
             margin: 0px;
             padding: 0px;
@@ -19,7 +30,6 @@
             width: 100%;
             top: 0px;
             left: 0px;
-            overflow: hidden;
             box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.08);
             z-index: 999;
         }
@@ -28,10 +38,11 @@
             width: calc(100% - 2px);
             margin-left: 0px;
         }
-        
+        /*
         .header .min .dh li {
-            display: block;
+            display: inline-block;
             float: left;
+            list-style: none;
             margin: 68px 10px 0px 70px;
             list-style: none;
             line-height: 50px;
@@ -39,6 +50,11 @@
             height: 50px;
             color: #5b6064;
             background-color: #fff;
+        }
+        */
+        
+        .current {
+            display: none !important;
         }
         
         .logo {
@@ -486,7 +502,43 @@
         }
         
         @media screen and (max-width: 600px) {
+            .nav {
+                float: right;
+                background-color: transparent;
+                /*position: relative;*/
+                /*min-height: 40px;*/
+            }
+            .nav ul {
+                width: 80px;
+                padding: 0;
+                top: 22px;
+                position: absolute;
+            }
+            .nav li {
+                background-color: transparent;
+                margin: 0;
+                padding: 0;
+                display: none;
+            }
+            .nav .current {
+                display: block !important;
+                font-size: 50px;
+                /* show only current &lt;li&gt; item */
+            }
+            .nav a {
+                display: block;
+                text-align: left;
+            }
+            .nav ul:hover li {
+                display: block;
+                margin-top: 5px;
+            }
+            .nav.right ul {
+                left: auto;
+                right: 0;
+            }
             .later {
+                margin-top: 60px;
                 width: 56%;
                 margin-right: 0px;
             }
@@ -509,6 +561,17 @@
                 margin: 15px 2% 0px 2%;
             }
         }
+        
+        @media screen and (max-width: 500px) {
+            .later {
+                margin-top: 30px;
+            }
+            .nav ul {
+                top: 60px;
+            }
+            .nav ul li {
+                float: right;
+            }
     </style>
     <script type="text/javascript">
         var get_data;
@@ -910,26 +973,24 @@
                 <div class="logo">
                     <img src="image/logo.gif" alt="">
                 </div>
-                <ul>
-                    <a href="###" onclick="moveto('fair')">
-                        <li>市集</li>
-                    </a>
-                    <a href="###" onclick="moveto('act')">
-                        <li>活动</li>
-                    </a>
-                    <a href="###" onclick="moveto('grp')">
-                        <li>小组</li>
-                    </a>
-                </ul>
+                <nav class="nav right">
+                    <ul>
+                        <li class="current"><a href="###">≡</a></li>
+                        <li><a href="###" onclick="moveto('fair')">市集</a></li>
+                        <li><a href="###" onclick="moveto('act')">活动</a></li>
+                        <li><a href="###" onclick="moveto('grp')">小组</a></li>
 
-            </div>
-            <div class="later">
-                <div style="float:right">
-                    <input type="text" class="search" name="s" placeholder="" value="" onkeydown="if(event.keyCode==13){search(this.value);}">
-                    <a href="###">
-                        <div id="login">登录</div>
+                    </ul>
+                </nav>
+
+                <div class="later">
+                    <div style="float:right">
+                        <input type="text" class="search" name="s" placeholder="" value="" onkeydown="if(event.keyCode==13){search(this.value);}">
+                        <a href="###">
+                            <div id="login">登录</div>
+                    </div>
+                    </a>
                 </div>
-                </a>
             </div>
         </div>
     </div>
