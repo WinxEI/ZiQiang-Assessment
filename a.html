@@ -520,23 +520,33 @@
         var count = [3, 2, 4];
 
         function loadXMLDoc() {
-            /*var json_address = ["http://121.42.39.103:8080/api/products", "http://121.42.39.103:8080/api/activities", "http://121.42.39.103:8080/api/groups"];
-            var json_name = ["fair_json", "act_json", "grp_json"];*/
             document.getElementsByClassName("viewmore")[0].onclick = function() {
-                ViewFunc1();
+                ViewFunc1(1);
+            };
+            document.getElementsByClassName("viewmore")[0].ondblclick = function() {
+                ViewFunc1(2);
             };
             document.getElementsByClassName("viewmore")[1].onclick = function() {
-                ViewFunc2()
+                ViewFunc2(1)
+            };
+            document.getElementsByClassName("viewmore")[1].ondblclick = function() {
+                ViewFunc2(2)
             };
             document.getElementsByClassName("viewmore")[2].onclick = function() {
-                ViewFunc3()
+                ViewFunc3(1)
             };
-            /*for (var i = 0; i < 3; i++) {
-                getData(json_address[i], json_name[i], count[i], index[i]);
-            }*/
+            document.getElementsByClassName("viewmore")[2].ondblclick = function() {
+                ViewFunc3(2)
+            };
+            document.getElementsByClassName("fair_box")[0].innerHTML = "<div class='clear insert'></div>";
+            document.getElementsByClassName("act_bbox")[0].innerHTML = "<div class='clear insert'></div>";
+            document.getElementsByClassName("grp_bbox")[0].innerHTML = "<div class='clear insert'></div>";
+            getData("http://121.42.39.103:8080/api/products", count[0], index[0], 1, 0, "");
+            getData("http://121.42.39.103:8080/api/activities", count[1], index[1], 2, 0, "");
+            getData("http://121.42.39.103:8080/api/groups", count[2], index[2], 3, 0, "");
         }
 
-        function getData(url, ncount, nstart, state, str) {
+        function getData(url, ncount, nstart, state, issearch, str) {
             var xmlhttp;
             if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -567,15 +577,9 @@
                         default:
                             break;
                     }
-                    if (str != "") {
-                        index = [0, 0, 0];
-                        document.getElementsByClassName("viewmore")[0].style.visibility = "visible";
-                        document.getElementsByClassName("viewmore")[1].style.visibility = "visible";
-                        document.getElementsByClassName("viewmore")[2].style.visibility = "visible";
-                    }
                 };
             }
-            if (str == "") {
+            if (!issearch) {
                 xmlhttp.open("GET", url + "?count=" + ncount + ";start_index=" + nstart, true);
             } else {
                 xmlhttp.open("GET", url + "?count=" + ncount + ";start_index=" + nstart + ";search_key=" + str, true);
@@ -667,18 +671,13 @@
         }
 
         function search(str) {
-            if (str == "") {
-                return;
-            }
             //清空数组
-            index = [0, 0, 0];
             document.getElementsByClassName("fair_box")[0].innerHTML = "<div class='clear insert'></div>";
             document.getElementsByClassName("act_bbox")[0].innerHTML = "<div class='clear insert'></div>";
             document.getElementsByClassName("grp_bbox")[0].innerHTML = "<div class='clear insert'></div>";
-            getData("http://121.42.39.103:8080/api/products", count[0], index[0], 1, str);
-            getData("http://121.42.39.103:8080/api/activities", count[1], index[1], 2, str);
-            getData("http://121.42.39.103:8080/api/groups", count[2], index[2], 3, str);
-
+            getData("http://121.42.39.103:8080/api/products", count[0], 0, 1, 1, str);
+            getData("http://121.42.39.103:8080/api/activities", count[1], 0, 2, 1, str);
+            getData("http://121.42.39.103:8080/api/groups", count[2], 0, 3, 1, str);
         }
 
         function add1(data) {
@@ -708,9 +707,22 @@
                 index[0]++;
             }
         }
+        var isdb;
 
-        function ViewFunc1() {
-            getData("http://121.42.39.103:8080/api/products", count[0], index[0], 1, "");
+        function ViewFunc1(a) {
+            if (a == 1) {
+                isdb = false;
+                window.setTimeout(cc, 300)
+
+                function cc() {
+                    if (isdb != false) return;
+                    getData("http://121.42.39.103:8080/api/products", a * count[0], index[0], 1, 0, "");
+                }
+            } else {
+                isdb = true;
+                getData("http://121.42.39.103:8080/api/products", a * count[0], index[0], 1, 0, "");
+            }
+
         }
 
 
@@ -784,8 +796,20 @@
             }
         }
 
-        function ViewFunc2() {
-            getData("http://121.42.39.103:8080/api/activities", count[1], index[1], 2, "");
+        function ViewFunc2(a) {
+            if (a == 1) {
+                isdb = false;
+                window.setTimeout(cc, 300)
+
+                function cc() {
+                    if (isdb != false) return;
+                    getData("http://121.42.39.103:8080/api/activities", a * count[1], index[1], 2, 0, "");
+                }
+            } else {
+                isdb = true;
+                getData("http://121.42.39.103:8080/api/activities", a * count[1], index[1], 2, 0, "");
+            }
+
         }
         /*function ViewFunc2(element) {
             if (act_json == null) {
@@ -840,8 +864,20 @@
             }
         }
 
-        function ViewFunc3() {
-            getData("http://121.42.39.103:8080/api/groups", count[2], index[2], 3, "");
+        function ViewFunc3(a) {
+            if (a == 1) {
+                isdb = false;
+                window.setTimeout(cc, 300)
+
+                function cc() {
+                    if (isdb != false) return;
+                    getData("http://121.42.39.103:8080/api/groups", a * count[2], index[2], 3, 0, "");
+                }
+            } else {
+                isdb = true;
+                getData("http://121.42.39.103:8080/api/groups", a * count[2], index[2], 3, 0, "");
+            }
+
         }
         /*   if (grp_json == null) {
                 alert("请等待加载！！！");

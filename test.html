@@ -1,22 +1,103 @@
 <html>
 
 <head>
-<script type="text/javascript" src="/jquery-3.0.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $("button").click(function(){
-      $.getJSON("http://121.42.39.103:8080/api/groups",{ name: "喵汪" } function(json){
-        alert(json.data[0].name)
-               });
-  });
-});
-</script>
+  <script type="text/javascript">
+		var $$ = function (id) {
+			return document.getElementById(id);
+		}
+		var move = function (obj, target) {
+			var timer;
+			clearInterval(timer);
+			timer = setInterval(function () {
+				var speed = (target - obj.offsetTop)/3;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+				if (Math.abs(obj.offsetTop - target) < 4) {
+					clearInterval(timer);
+					obj.style.marginTop = target + "px";
+				} else {
+					obj.style.marginTop = obj.offsetTop + speed + "px";
+				}
+			}, 30);
+
+		}
+
+		var toggle = function (menuId, btnId) {
+			var menu = $$(menuId);
+			var btn = $$(btnId);
+			var countNum = 0;
+			var menuHeight = menu.offsetHeight;
+			menu.style.marginTop = - menuHeight + "px";
+			btn.onclick = function () {
+				if (countNum === 0) {
+					move(menu, 0);
+					countNum = 1;
+				} else {
+					move(menu, -menuHeight);
+					countNum = 0;
+				}
+			}
+		}
+
+		onload = function () {
+			if ($$("btn")) {
+				toggle("menu", "btn");
+			} else {
+			}
+		}
+
+		onresize = function () {
+			location.reload();
+		}
+
+	</script>
+    <style>
+        .nav {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .nav ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav li {
+            margin: 0 5px 10px 0;
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+        }
+        
+        .nav a {
+            padding: 3px 12px;
+            text-decoration: none;
+            color: #999;
+            line-height: 100%;
+        }
+        
+        .nav a:hover {
+            color: #000;
+        }
+        
+        .nav .current a {
+            background: #999;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
-
-<button>获得 JSON 数据</button>
-<p></p>
+    <nav class="nav">
+        <ul>
+            <li class="current"><a href="#">Portfolio</a></li>
+            <li><a href="#">Illustration</a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Print Media</a></li>
+            <li><a href="#">Graphic Design</a></li>
+        </ul>
+    </nav>
 
 </body>
+
 </html>
