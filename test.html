@@ -1,44 +1,22 @@
 <html>
+
 <head>
+<script type="text/javascript" src="/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
-function loadXMLDoc()
-{
-var xmlhttp;
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    var info = xmlhttp.responseText;  
-    eval("var json =" + info);
-    var message="";  
-    var dealerlocation="";  
-    var salesphone="";
-    for(var i=0;i<10;i++){  
-           message+="经销商名称：<font style='color:red;'>" + json.data[i].picture + "</font>  <br/>";  
-           salesphone+="经销商电话：<font style='color:red;'>" + json.data[i].name + "</font>  <br/>";  
-           dealerlocation+="经销商经纬度：<font style='color:red;'>" + json.data[i].is_hot + "</font>  <br/>";  
-      }  
-    document.getElementById("myDiv").innerHTML=json.data.length;
-    }
-  }
-xmlhttp.open("GET","products.json",true);
-xmlhttp.send();
-}
+$(document).ready(function(){
+  $("button").click(function(){
+      $.getJSON("http://121.42.39.103:8080/api/groups",{ name: "喵汪" } function(json){
+        alert(json.data[0].name)
+               });
+  });
+});
 </script>
 </head>
+
 <body>
 
-<h2>AJAX</h2>
-<button type="button" onclick="loadXMLDoc()">请求数据</button>
-<div id="myDiv"></div>
+<button>获得 JSON 数据</button>
+<p></p>
 
 </body>
 </html>

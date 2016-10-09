@@ -138,6 +138,15 @@
             margin-top: 22px;
             padding-left: 6px;
             padding-right: 7px;
+            min-height: 50px;
+        }
+        
+        .grp_bbox {
+            min-height: 50px;
+        }
+        
+        .act_bbox {
+            min-height: 50px;
         }
         
         .circle {
@@ -241,29 +250,29 @@
             background-color: #fff;
         }
         
-        #act_box1 .circle {
+        .act_box1 .circle {
             position: static;
             float: right;
             margin-top: 0px;
             margin-right: 5.1%;
         }
         
-        #act_box2 .circle {
+        .act_box2 .circle {
             position: static;
             float: left;
             margin-top: 0px;
             margin-left: 5.1%;
         }
         
-        #act_box1 .act_img {
+        .act_box1 .act_img {
             float: left;
         }
         
-        #act_box2 .act_img {
+        .act_box2 .act_img {
             float: right;
         }
         
-        #act_box2 .act_text {
+        .act_box2 .act_text {
             float: right;
             text-align: right;
         }
@@ -400,10 +409,12 @@
                 padding: 0;
             }
             .fair_link {
-                margin: 0;
                 margin-top: 15px;
                 padding: 0;
-                width: 100%
+                width: 45%;
+                width: calc(50% - 25px);
+                width: -moz-calc(50% - 25px);
+                width: -webkit-calc(50% - 25px);
             }
             .imgood {
                 margin: 0 auto;
@@ -411,43 +422,66 @@
             .fair_link a p {
                 width: 220px;
             }
-            .act_img {
-                margin: 0;
-                width: 100%;
-            }
-            .header .min .dh li {
-                margin: 15px 5% 0px 5%;
-            }
-            .act_img img {
-                width: 90%;
-                height: 205px;
-                margin: 0 auto;
-            }
-            #act_box1 .circle {
-                margin-top: 10px;
-                margin-left: 0;
-            }
-            #act_box2 .circle {
-                margin-top: 10px;
-                margin-right: 0;
-            }
-            #act_box1 .act_text {
-                margin-left: 5%;
-            }
-            #act_box2 .act_text {
-                margin-right: 5%;
-            }
             .grp_box {
                 margin-top: 10px;
                 margin-right: 0px;
                 padding: 0;
                 width: 100%;
             }
+            .header .min .dh li {
+                margin: 15px 5% 0px 5%;
+            }
             .grp_box div {
                 margin: 35px 0;
             }
+            .act_img {
+                margin: 0 4%;
+                width: 40%;
+            }
+            .act_img img {
+                width: 100%;
+                height: 205px;
+                margin: 0 auto;
+            }
             .grp_box img {
                 margin: 20px 10%;
+            }
+        }
+        
+        @media screen and (max-width: 680px) {
+            .act_img {
+                margin: 0;
+                width: 100%;
+            }
+            .viewmore {
+                margin-left: 5%;
+                margin-right: 5%;
+                height: 34px;
+                line-height: 34px;
+                background-color: #4a8954;
+                text-align: center;
+            }
+            .viewmore a {
+                color: #fff;
+            }
+            .act_img img {
+                width: 90%;
+                height: 205px;
+                margin: 0 auto;
+            }
+            .act_box1 .circle {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+            .act_box2 .circle {
+                margin-top: 10px;
+                margin-right: 0;
+            }
+            .act_box1 .act_text {
+                margin-left: 5%;
+            }
+            .act_box2 .act_text {
+                margin-right: 5%;
             }
         }
         
@@ -455,6 +489,14 @@
             .later {
                 width: 56%;
                 margin-right: 0px;
+            }
+            .fair_link {
+                margin-top: 15px;
+                padding: 0;
+                width: 100%;
+                width: calc(100% - 25px);
+                width: -moz-calc(100% - 25px);
+                width: -webkit-calc(100% - 25px);
             }
             .copyright span {
                 display: block;
@@ -469,45 +511,32 @@
         }
     </style>
     <script type="text/javascript">
-        var fair_json;
+        var get_data;
         var act_json;
         var grp_json;
-        var index = [1, 1, 1];
+        var index = [0, 0, 0];
         var sdelay;
         var element_top;
-        var result = {
-            fair: {
-                data: new Array()
-            },
-            act: {
-                data: new Array()
-            },
-            grp: {
-                data: new Array()
-            }
-        };
-
-
+        var count = [3, 2, 4];
 
         function loadXMLDoc() {
-            var json_address = ["http://121.42.39.103:8080/api/products", "http://121.42.39.103:8080/api/activities", "http://121.42.39.103:8080/api/groups"];
-            var json_name = ["fair_json", "act_json", "grp_json"];
+            /*var json_address = ["http://121.42.39.103:8080/api/products", "http://121.42.39.103:8080/api/activities", "http://121.42.39.103:8080/api/groups"];
+            var json_name = ["fair_json", "act_json", "grp_json"];*/
             document.getElementsByClassName("viewmore")[0].onclick = function() {
-                ViewFunc1(fair_json)
+                ViewFunc1();
             };
             document.getElementsByClassName("viewmore")[1].onclick = function() {
-                ViewFunc2(act_json)
+                ViewFunc2()
             };
             document.getElementsByClassName("viewmore")[2].onclick = function() {
-                ViewFunc3(grp_json)
+                ViewFunc3()
             };
-            for (var i = 0; i < 3; i++) {
-                getData(json_address[i], json_name[i]);
-            }
-
+            /*for (var i = 0; i < 3; i++) {
+                getData(json_address[i], json_name[i], count[i], index[i]);
+            }*/
         }
 
-        function getData(url, json) {
+        function getData(url, ncount, nstart, state, str) {
             var xmlhttp;
             if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -515,19 +544,44 @@
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
             xmlhttp.onreadystatechange = function() {
+                getstate(state, str);
+            }
+
+            function getstate(state, str) {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var info = xmlhttp.responseText;
-                    eval(json + "=" + info);
+                    var json = eval("(" + info + ")");
                     delete xmlhttp;
                     xmlHttp = null;
+                    get_data = json.data;
+                    switch (state) {
+                        case 1:
+                            add1(json.data);
+                            break;
+                        case 2:
+                            add2(json.data);
+                            break;
+                        case 3:
+                            add3(json.data);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (str != "") {
+                        index = [0, 0, 0];
+                        document.getElementsByClassName("viewmore")[0].style.visibility = "visible";
+                        document.getElementsByClassName("viewmore")[1].style.visibility = "visible";
+                        document.getElementsByClassName("viewmore")[2].style.visibility = "visible";
+                    }
                 };
             }
-            xmlhttp.open("GET", url + "?t=" + Math.random(), true);
+            if (str == "") {
+                xmlhttp.open("GET", url + "?count=" + ncount + ";start_index=" + nstart, true);
+            } else {
+                xmlhttp.open("GET", url + "?count=" + ncount + ";start_index=" + nstart + ";search_key=" + str, true);
+            }
             //xmlhttp[1].open("GET", "activities.json?t=" + Math.random(), false);
             xmlhttp.send();
-            //var info = xmlhttp[i].responseText;
-            //eval(json_name[i] + "=" + info);
-            //xmlhttp[1].send()
         }
 
         function bkgimPos(var1) {
@@ -613,79 +667,54 @@
         }
 
         function search(str) {
-            if (fair_json == null) {
-                alert("请等待加载！！！");
+            if (str == "") {
                 return;
             }
             //清空数组
-            result.fair.data.length = 0;
-            result.act.data.length = 0;
-            result.grp.data.length = 0;
-            var count = 0;
-            var patt = new RegExp(str, "i");
-            for (var i = 0; i < fair_json.data.length; i++) {
-                if (fair_json.data[i].name.match(patt) != null) {
-                    result.fair.data[count++] = fair_json.data[i];
-                };
-            }
-            count = 0;
-            for (var i = 0; i < act_json.data.length; i++) {
-                if (act_json.data[i].name.match(patt) != null || act_json.data[i].location.match(patt) != null) {
-                    result.act.data[count++] = act_json.data[i];
-                };
-            }
-            count = 0;
-            for (var i = 0; i < grp_json.data.length; i++) {
-                if (grp_json.data[i].name.match(patt) != null) {
-                    result.grp.data[count++] = grp_json.data[i];
-                };
-            }
             index = [0, 0, 0];
-            if (result.fair.data.length > 0) {
-                document.getElementsByClassName("viewmore")[0].onclick = function() {
-                    ViewFunc1(result.fair)
-                };
-                ViewFunc1(result.fair);
+            document.getElementsByClassName("fair_box")[0].innerHTML = "<div class='clear insert'></div>";
+            document.getElementsByClassName("act_bbox")[0].innerHTML = "<div class='clear insert'></div>";
+            document.getElementsByClassName("grp_bbox")[0].innerHTML = "<div class='clear insert'></div>";
+            getData("http://121.42.39.103:8080/api/products", count[0], index[0], 1, str);
+            getData("http://121.42.39.103:8080/api/activities", count[1], index[1], 2, str);
+            getData("http://121.42.39.103:8080/api/groups", count[2], index[2], 3, str);
+
+        }
+
+        function add1(data) {
+            if (data.length < count[0]) {
+                document.getElementsByClassName("viewmore")[0].style.visibility = "hidden";
             } else {
-                document.getElementsByClassName("viewmore")[0].onclick = function() {
-                    ViewFunc1(fair_json)
-                };
-                ViewFunc1(fair_json);
+                document.getElementsByClassName("viewmore")[0].style.visibility = "visible";
             }
-            if (result.act.data.length > 0) {
-                document.getElementsByClassName("viewmore")[1].onclick = function() {
-                    ViewFunc2(result.act)
-                };
-                ViewFunc2(result.act);
-            } else {
-                document.getElementsByClassName("viewmore")[1].onclick = function() {
-                    ViewFunc2(act_json)
-                };
-                ViewFunc2(act_json);
-            }
-            if (result.grp.data.length > 0) {
-                document.getElementsByClassName("viewmore")[2].onclick = function() {
-                    ViewFunc3(result.grp)
-                };
-                ViewFunc3(result.grp);
-            } else {
-                document.getElementsByClassName("viewmore")[2].onclick = function() {
-                    ViewFunc3(grp_json)
-                };
-                ViewFunc3(grp_json);
-            }
-            if (result.fair.data.length > 0) {
-                moveto("fair");
-            } else if (result.act.data.length > 0) {
-                moveto("act");
-            } else if (result.grp.data.length > 0) {
-                moveto("grp");
-            } else {
-                alert("w(ﾟДﾟ)w");
+            for (var i = 0; i < data.length; i++) {
+                var divnew = document.createElement("div");
+                divnew.setAttribute("class", "fair_link");
+                divnew.innerHTML = "<a href='###'><div class='imgood'><div class='circle'>NEW</div><div class='price'><span>￥</span>28</div></div><p>加入购物车</p></a>";
+                if (data[i].is_hot) {
+                    divnew.getElementsByClassName("circle")[0].style.visibility = "visible";
+                    divnew.getElementsByClassName("circle")[0].innerHTML = "HOT";
+                } else if (data[i].is_new) {
+                    divnew.getElementsByClassName("circle")[0].style.visibility = "visible";
+                    divnew.getElementsByClassName("circle")[0].innerHTML = "NEW";
+                } else {
+                    divnew.getElementsByClassName("circle")[0].style.visibility = "hidden";
+                }
+                divnew.getElementsByClassName("price")[0].innerHTML = "<span>￥</span>" + parseInt(data[i].price);
+                divnew.getElementsByClassName("imgood")[0].style.background = "url(" + "http://121.42.39.103:8080" + data[i].picture + ") no-repeat #fafafa " + bkgimPos(data[i].name);
+                var element = document.getElementsByClassName("fair_box")[0];
+                var child = document.getElementsByClassName("insert")[0];
+                element.insertBefore(divnew, child);
+                index[0]++;
             }
         }
 
-        function ViewFunc1(element) {
+        function ViewFunc1() {
+            getData("http://121.42.39.103:8080/api/products", count[0], index[0], 1, "");
+        }
+
+
+        /*function ViewFunc1(element) {
             if (fair_json == null) {
                 alert("请等待加载！！！");
                 return;
@@ -716,7 +745,7 @@
             if (index[0] >= data.length) {
                 document.getElementsByClassName("viewmore")[0].style.visibility = "hidden";
             }
-        }
+        }*/
 
         function clrZero(str) {
             str1 = str.substring(0, 3);
@@ -727,7 +756,38 @@
             return str;
         }
 
-        function ViewFunc2(element) {
+        function add2(data) {
+            if (data.length < count[1]) {
+                document.getElementsByClassName("viewmore")[1].style.visibility = "hidden";
+            } else {
+                document.getElementsByClassName("viewmore")[1].style.visibility = "visible";
+            }
+            for (var i = 0; i < data.length; i++) {
+                var divnew = document.createElement("div");
+                divnew.setAttribute("class", "act_box act_box1");
+                divnew.innerHTML = " <div class = 'act_img' ><img src = 'image/MUJI.png' ></div> <div class = 'act_text' ><p class = 'item1' ></p> <p class = 'item2' ></p> <p class = 'item3' ></p> <p class = 'item4' ></p></div> <div class = 'circle' > HOT </div> <div class = 'clear' ></div>";
+                if (data[i].is_hot) {
+                    divnew.getElementsByClassName("circle")[0].style.visibility = "visible";
+                    divnew.getElementsByClassName("circle")[0].innerHTML = "HOT";
+                } else {
+                    divnew.getElementsByClassName("circle")[0].style.visibility = "hidden";
+                }
+                divnew.getElementsByTagName("img")[0].src = "http://121.42.39.103:8080" + data[i].picture;
+                divnew.getElementsByTagName("p")[0].innerHTML = data[i].name;
+                divnew.getElementsByTagName("p")[1].innerHTML = clrZero(data[i].start_date) + "-" + clrZero(data[i].end_date);
+                divnew.getElementsByTagName("p")[2].innerHTML = data[i].location;
+                divnew.getElementsByTagName("p")[3].innerHTML = "<span>" + data[i].participants + "</span>" + " 人参加";
+                var element = document.getElementsByClassName("act_bbox")[0];
+                var child = document.getElementsByClassName("insert")[1];
+                element.insertBefore(divnew, child);
+                index[1]++;
+            }
+        }
+
+        function ViewFunc2() {
+            getData("http://121.42.39.103:8080/api/activities", count[1], index[1], 2, "");
+        }
+        /*function ViewFunc2(element) {
             if (act_json == null) {
                 alert("请等待加载！！！");
                 return;
@@ -758,10 +818,32 @@
                 document.getElementsByClassName("viewmore")[1].style.visibility = "hidden";
             }
 
+        }*/
+        function add3(data) {
+            if (data.length < count[2]) {
+                document.getElementsByClassName("viewmore")[2].style.visibility = "hidden";
+            } else {
+                document.getElementsByClassName("viewmore")[2].style.visibility = "visible";
+            }
+            for (var i = 0; i < data.length; i++) {
+                var divnew = document.createElement("div");
+                divnew.setAttribute("class", "grp_box");
+                divnew.innerHTML = " <img><div><p class='h'></p><p></p></div>";
+                divnew.getElementsByTagName("img")[0].src = "http://121.42.39.103:8080" + data[i].picture;
+                divnew.getElementsByTagName("p")[0].innerHTML = data[i].name;
+                divnew.getElementsByTagName("p")[0].innerHTML = data[i].name;
+                divnew.getElementsByTagName("p")[1].innerHTML = "<span>" + data[i].members + "</span> 个成员";
+                var element = document.getElementsByClassName("grp_bbox")[0];
+                var child = document.getElementsByClassName("insert")[2];
+                element.insertBefore(divnew, child);
+                index[2]++;
+            }
         }
 
-        function ViewFunc3(element) {
-            if (grp_json == null) {
+        function ViewFunc3() {
+            getData("http://121.42.39.103:8080/api/groups", count[2], index[2], 3, "");
+        }
+        /*   if (grp_json == null) {
                 alert("请等待加载！！！");
                 return;
             }
@@ -781,7 +863,7 @@
             if (index[2] >= data.length) {
                 document.getElementsByClassName("viewmore")[2].style.visibility = "hidden";
             }
-        }
+        }*/
     </script>
 </head>
 
@@ -822,6 +904,7 @@
                 <p>市 集</p>
             </div>
 
+
             <div class="fair_box">
                 <div class="fair_link">
                     <a href="###">
@@ -850,7 +933,7 @@
                         <p>加入购物车</p>
                     </a>
                 </div>
-                <div class="clear">
+                <div class="clear insert">
                 </div>
             </div>
             <div class="viewmore">
@@ -859,34 +942,36 @@
             <div class="title" id="act">
                 <p>活 动</p>
             </div>
-            <div class="act_box" id="act_box1">
-
-                <div class="act_img">
-                    <img src="image/MUJI.png">
+            <div class="act_bbox">
+                <div class="act_box act_box1">
+                    <div class="act_img">
+                        <img src="image/MUJI.png">
+                    </div>
+                    <div class="act_text">
+                        <p class="item1">MUJI 体验之路</p>
+                        <p class="item2">7月10日-7月12日</p>
+                        <p class="item3">昙华林</p>
+                        <p class="item4"><span>102</span> 人参加</p>
+                    </div>
+                    <div class="circle">HOT</div>
+                    <div class="clear">
+                    </div>
                 </div>
-                <div class="act_text">
-                    <p class="item1">MUJI 体验之路</p>
-                    <p class="item2">7月10日-7月12日</p>
-                    <p class="item3">昙华林</p>
-                    <p class="item4"><span>102</span> 人参加</p>
+                <div class="act_box act_box2">
+                    <div class="act_img">
+                        <img src="image/IDEE.png" alt="">
+                    </div>
+                    <div class="circle">HOT</div>
+                    <div class="act_text">
+                        <p class="item1">IDEE学习与探索</p>
+                        <p class="item2">8月10日-8月22日</p>
+                        <p class="item3">汉口循礼门1号国际大道43号</p>
+                        <p class="item4"><span>32</span> 人参加</p>
+                    </div>
+                    <div class="clear">
+                    </div>
                 </div>
-                <div class="circle">HOT</div>
-                <div class="clear">
-                </div>
-            </div>
-            <div class="act_box" id="act_box2">
-
-                <div class="act_img">
-                    <img src="image/IDEE.png" alt="">
-                </div>
-                <div class="circle">HOT</div>
-                <div class="act_text">
-                    <p class="item1">IDEE学习与探索</p>
-                    <p class="item2">8月10日-8月22日</p>
-                    <p class="item3">汉口循礼门1号国际大道43号</p>
-                    <p class="item4"><span>32</span> 人参加</p>
-                </div>
-                <div class="clear">
+                <div class="clear insert">
                 </div>
             </div>
             <div class="viewmore">
@@ -895,35 +980,37 @@
             <div class="title" id="grp">
                 <p>小 组</p>
             </div>
-            <div class="grp_box">
-                <img src="image/flower.png" alt="">
-                <div>
-                    <p class="h">植物百科</p>
-                    <p><span>201</span> 个成员</p>
+            <div class="grp_bbox">
+                <div class="grp_box">
+                    <img src="image/flower.png" alt="">
+                    <div>
+                        <p class="h">植物百科</p>
+                        <p><span>201</span> 个成员</p>
+                    </div>
                 </div>
-            </div>
-            <div class="grp_box">
-                <img src="image/flower.png" alt="">
-                <div>
-                    <p class="h">植物百科</p>
-                    <p><span>201</span> 个成员</p>
+                <div class="grp_box">
+                    <img src="image/flower.png" alt="">
+                    <div>
+                        <p class="h">植物百科</p>
+                        <p><span>201</span> 个成员</p>
+                    </div>
                 </div>
-            </div>
-            <div class="grp_box">
-                <img src="image/flower.png" alt="">
-                <div>
-                    <p class="h">植物百科</p>
-                    <p><span>201</span> 个成员</p>
+                <div class="grp_box">
+                    <img src="image/flower.png" alt="">
+                    <div>
+                        <p class="h">植物百科</p>
+                        <p><span>201</span> 个成员</p>
+                    </div>
                 </div>
-            </div>
-            <div class="grp_box">
-                <img src="image/flower.png" alt="">
-                <div>
-                    <p class="h">植物百科</p>
-                    <p><span>201</span> 个成员</p>
+                <div class="grp_box">
+                    <img src="image/flower.png" alt="">
+                    <div>
+                        <p class="h">植物百科</p>
+                        <p><span>201</span> 个成员</p>
+                    </div>
                 </div>
-            </div>
-            <div class="clear">
+                <div class="clear insert">
+                </div>
             </div>
             <div class="viewmore">
                 <a href="###">查看更多>></a>
